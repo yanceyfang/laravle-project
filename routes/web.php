@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::group(['prefix' => 'collection', 'namespace' => "Collection"], function () {
+
+    Route::get('index','CollectionController@index');
+
+    Route::get('export','CollectionController@export');
+});
