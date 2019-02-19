@@ -20,13 +20,13 @@ class CollectionController extends Controller{
     public function index(){
 
         //todo 做外壳页面
-        return '外壳页面';
+        return view('welcome');
     }
 
     public function export(){
 
-        //文件名
         $CollectionService = new CollectionService();
+        //文件名
         $fileName = $CollectionService->getFileName();
         //导出
         return Excel::download(new CollectionExport, $fileName);

@@ -9,12 +9,12 @@ namespace App\Services\Collection;
 
 
 use App\Models\BorrowerRepay;
+use Vinkla\Hashids\Facades\Hashids;
 
 class CollectionService{
 
     //导出数据组装
     public function export(){
-
         $models = new BorrowerRepay();
         $data = $models->getCollection();
         $data = $this->collectionRetreatment($data);
@@ -51,6 +51,7 @@ class CollectionService{
             'repay_time' => date('Y-m-d',$datum->repay_time),
             'overdue_day' => $datum->overdue_day,
             'overdue_interest' => $datum->overdue_interest/100,
+            'juxinli' => $this->juxinliUrl($datum->uid),
         ];
         return $collectionItem;
     }
@@ -66,6 +67,14 @@ class CollectionService{
                 + $data->overdue_interest)/100;
 
         return $all_amt;
+    }
+
+    //聚信立URL加密
+    public function juxinliUrl($uid){
+        $url      = config('juxinli.url');
+        $validity = date("Ymd",time());
+        $hash = Hashids::encode($uid."0000000000".$validity);
+        return $url.$hash;
     }
 
     //导出文件名

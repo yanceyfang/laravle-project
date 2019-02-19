@@ -17,6 +17,7 @@ class BorrowerRepay extends Model
 
 
         $sql = "SELECT 
+                a.uid , 
                 c.mobile , 
                 b.full_name , 
                 d.address , 

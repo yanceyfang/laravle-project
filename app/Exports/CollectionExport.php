@@ -30,6 +30,7 @@ class CollectionExport implements FromArray, WithHeadings , ShouldAutoSize
             '应还时间',
             '逾期天数',
             '逾期罚息',
+            '聚立信链接',
         ];
     }
 
