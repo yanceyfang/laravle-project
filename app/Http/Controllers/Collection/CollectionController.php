@@ -20,7 +20,7 @@ class CollectionController extends Controller{
     public function index(){
 
         //todo 做外壳页面
-        return view('welcome');
+        return view('index');
     }
 
     public function export(){
